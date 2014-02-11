@@ -87,36 +87,25 @@
 }
 
 .user-1 {
-	background-image: url(../images/chewbacca.jpg);
+	background-image: url(../images/firehydrant.jpg);
 }
 
 .user-2 {
-	background-image: url(../images/barf.jpg);
+	background-image: url(../images/wifispot.jpg);
 }
 
 .user-3 {
-	background-image: url(../images/darkhelmet.jpg);
+	background-image: url(../images/spot.jpg);
 }
 
 .user-4 {
-	background-image: url(../images/darthvader.jpg);
+	background-image: url(../images/evacuationarea.jpg);
 }
 
 .user-5 {
-	background-image: url(../images/leia.jpg);
+	background-image: url(../images/aed.jpg);
 }
 
-.user-6 {
-	background-image: url(../images/vespa.jpg);
-}
-
-.user-7 {
-	background-image: url(../images/c3po.jpg);
-}
-
-.user-8 {
-	background-image: url(../images/dotmatrix.jpg);
-}
 
 /* Transparent Checkbox/radio hack: leave the checkbox on top, hide it with opacity 0 */
 
