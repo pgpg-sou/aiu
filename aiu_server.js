@@ -5,7 +5,8 @@ var url = require('url');
 var querystring = require('querystring');
 var server = http.createServer();
 var path = 'index.html';
-var data = fs.readFileSync(path);
+var mainPage = fs.readFileSync(path);
+var mongo_database;
 
 var mongo_server = new mongodb.Server("localhost", 27017);
 var database = new mongodb.Db("sample", mongo_server, { safe: true});
@@ -19,20 +20,36 @@ server.on('request', function(req, res) {
 		var query = url.parse(req.url).query;
 
 		req.setEncoding("utf8");
-		var data4="";
+		var data="";
+
+		// sample database
+		var collection = mongo_database.collection("sample_coll");
+		var result = collection.find({}, {"key1": "value1"});
+		result.toArray(function (err, values) {
+			console.dir(values);
+		});
+
 		req.on("readable", function () {
-			data4 += req.read();
-			console.log(data4);
+			data += req.read();
+			console.log(data);
 		});
 
-		// endイベント
 		req.addListener("end", function() {
-			res.end("ok");
-		});
+			res.writeHead(200, {"Content-Type": "application/json"});
 
+			var people = [
+			  { name: 'Dave', location: 'Atlanta' },
+			  { name: 'Santa Claus', location: 'North Pole' },
+			  { name: 'Man in the Moon', location: 'The Moon' }
+			];
+
+			var peopleJSON = JSON.stringify(people);
+			res.end(peopleJSON);
+
+		});
 	}
 	if(req.url == "/" && req.method=="GET") {
-		res.end(data);
+		res.end(mainPage);
 	} 
 });
 
@@ -41,15 +58,11 @@ database.open(function (err, db) {
 		console.log(err);
 		return ;
 	}
+	mongo_database = db;
 	console.log("sampledbにアクセスしました");
-	var collection = db.collection("sample_coll");
-	var result = collection.find({}, {"key1": "value1"});
-
-	result.toArray(function (err, values) {
-		console.dir(values);
-	});
 });
 
-server.listen(1337, 'localhost');
+server.listen(1337);
+
 console.log("Server running at http://localhost:1337/");
 console.log("サーバを終了する際は[ctrl + c]を押してください");
