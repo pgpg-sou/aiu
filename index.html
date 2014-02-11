@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AIU</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+  	<h2 >Hello</h2>
+  	<form method="post">
+		<input type="text" name="txt1" id="test"/>
+		<input type="submit" value="送信" /><!-- 送信ボタン -->
+	</form>
+
+	<script type="text/javascript">
+	    $(function(){
+		    setInterval("submit()",3000);
+		});
+	    function submit() {
+	    	if(navigator.geolocation) {
+			    navigator.geolocation.getCurrentPosition(function(position) {
+			        var pos = {x: position.coords.latitude, y: position.coords.longitude};
+
+					$.ajax( {
+						type: "POST",
+						data: pos
+					}).done(function(data, status, xhr) {
+					    console.log("done")
+					    console.log(data)
+					}).fail(function(xhr, status, error) {
+					    console.log("failed")
+					}).always(function(arg1, status, arg2) {
+					    console.log("success")
+					});
+
+			    });
+	    	}
+	    }
+	</script>
+
+  </body>
+</html>
