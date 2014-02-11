@@ -2,43 +2,109 @@
 <html>
   <head>
     <title>AIU</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=divive-width initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="description" content="オープンデータで公開されている近くにある情報を知らせてくれるサイトです。" />
+    <meta name="keywords" content="オープンデータ" />
+    <meta name="author" content="aiu" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script src="js/modernizr.custom.63321.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	
   </head>
+
   <body>
-  	<h2 >Hello</h2>
-  	<form method="post">
-		<input type="text" name="txt1" id="test"/>
-		<input type="submit" value="送信" /><!-- 送信ボタン -->
-	</form>
+		<div class="container">				
+			<header class="clearfix">
+			
+				<h1>Responsive CSS Timeline with 3D Effect <span>(Best viewed in WebKit browsers)</span></h1>
+				<h2>Star Wars vs. Spaceballs <span>The final battle</span></h2>
+				<form method="post">
+					<input type="text" name="txt1" id="test"/>
+					<input type="submit" value="送信" /><!-- 送信ボタン -->
+				</form>
+			</header>
+			
+			<section class="main">
 
+				<ul class="timeline">
+
+					<li class="event">
+						<input type="radio" name="tl-group" checked/>
+						<label></label>
+						<div class="thumb user-4"><span>ダースベーダ</span></div>
+						<!-- <div><span>aaa</span><div> -->
+						<div class="content-perspective">
+							<div class="content">
+								<div class="content-inner">
+									<h3>５分遅延してるよ〜〜！！！急がなきゃ！</h3>
+									<p><span>4/10/13 - 18:30 -</span>府中付近にて</p>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li class="event">
+						<input type="radio" name="tl-group"/>
+						<label></label>
+						<div class="thumb user-6"><span>レッサーパンダ</span></div>
+						<div class="content-perspective">
+							<div class="content">
+								<div class="content-inner">
+									<h3>鯖江市１００景第５０番	レッサーパンダだよ</h3>
+									<p><span>4/10/13 - 18:30 -</span>府中付近にて</p>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li class="event">
+						<input type="radio" name="tl-group"/>
+						<label></label>
+						<div class="thumb user-3"><span>椚田公園</span></div>
+						<div class="content-perspective">
+							<div class="content">
+								<div class="content-inner">
+									<h3>この公園は避難場所だよ。もしものときのために覚えておこう！</h3>
+									<p><span>4/10/13 - 18:30 -</span>府中付近にて</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			</section>
+
+		</div><!-- /container -->
 	<script type="text/javascript">
-	    $(function(){
-		    setInterval("submit()",3000);
-		});
-	    function submit() {
-	    	if(navigator.geolocation) {
-			    navigator.geolocation.getCurrentPosition(function(position) {
-			        var pos = {x: position.coords.latitude, y: position.coords.longitude};
+		    $(function(){
+			    setInterval("submit()",3000);
+			});
+		    function submit() {
+		    	if(navigator.geolocation) {
+				    navigator.geolocation.getCurrentPosition(function(position) {
+				        var pos = {x: position.coords.latitude, y: position.coords.longitude};
 
-					$.ajax( {
-						type: "POST",
-						data: pos
-					}).done(function(data, status, xhr) {
-					    console.log("done")
-					    console.log(data)
-					}).fail(function(xhr, status, error) {
-					    console.log("failed")
-					}).always(function(arg1, status, arg2) {
-					    console.log("success")
-					});
+						$.ajax( {
+							type: "POST",
+							data: pos
+						}).done(function(data, status, xhr) {
+						    console.log("done")
+						    console.log(data)
+						}).fail(function(xhr, status, error) {
+						    console.log("failed")
+						}).always(function(arg1, status, arg2) {
+						    console.log("success")
+						});
 
-			    });
-	    	}
-	    }
-	</script>
-
-  </body>
+				    });
+		    	}
+		    }
+		</script>
+	</body>
 </html>
