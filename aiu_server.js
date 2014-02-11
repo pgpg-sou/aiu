@@ -10,10 +10,12 @@ var mongo_database;
 
 var mongo_server = new mongodb.Server("localhost", 27017);
 var database = new mongodb.Db("sample", mongo_server, { safe: true});
+var count = 0;
 
 server.on('request', function(req, res) {
-	console.log(req.method);
-	
+	console.log(req.url + " count = " + count);
+	count++;
+
 	if(req.method == "POST") {
 		var postData;
 		var pathname = url.parse(req.url).pathname;
@@ -45,12 +47,40 @@ server.on('request', function(req, res) {
 
 			var peopleJSON = JSON.stringify(people);
 			res.end(peopleJSON);
-
 		});
 	}
+
 	if(req.url == "/" && req.method=="GET") {
+		res.writeHead(200, {"Content-Type": "text/html"});
 		res.end(mainPage);
 	} 
+
+    if(req.url.match('.css')) {
+        console.log("text/stylesheet")
+        res.writeHead(200,
+            {'Content-Type': 'text/css; charset=UTF-8'}
+            );
+		var file_path = require.resolve("." + req.url);
+		var file_content = fs.readFileSync(file_path);
+		res.end(file_content);
+    } else if(req.url.match('.js')) {
+        console.log("text/javascript")
+        res.writeHead(200,
+            {'Content-Type': 'text/javascript; charset=UTF-8'}
+            );
+		var file_path = require.resolve("." + req.url);
+		var file_content = fs.readFileSync(file_path);
+		res.end(file_content);
+	} else if(req.url.match('.jpg')) {
+        console.log("image/jpeg")
+        res.writeHead(200,
+            {'Content-Type': 'image/jpeg; charset=UTF-8'}
+            );
+		var file_path = require.resolve("." + req.url);
+		var file_content = fs.readFileSync(file_path);
+		res.end(file_content);		
+	}
+
 });
 
 database.open(function (err, db) {
