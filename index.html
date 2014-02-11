@@ -82,22 +82,16 @@
 		    function submit() {
 		    	if(navigator.geolocation) {
 				    navigator.geolocation.getCurrentPosition(function(position) {
-				        var pos = {x: position.coords.latitude, y: position.coords.longitude};
+				        var pos = {x: 35.94576381, y: 136.1771778};
 
 						$.ajax( {
 							type: "POST",
 							data: pos
+							// contentType: 'application/json',
+							// dataType: "json"
 						}).done(function(data, status, xhr) {
 						    console.log("done")
 						    console.log(data)
-
-
-
-
-
-
-
-
 						}).fail(function(xhr, status, error) {
 						    console.log("failed")
 						}).always(function(arg1, status, arg2) {

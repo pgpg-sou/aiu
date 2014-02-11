@@ -7,46 +7,44 @@ var server = http.createServer();
 var path = 'index.html';
 var mainPage = fs.readFileSync(path);
 var mongo_database;
+		var postData;
+
 
 var mongo_server = new mongodb.Server("localhost", 27017);
-var database = new mongodb.Db("sample", mongo_server, { safe: true});
-var count = 0;
+var database = new mongodb.Db("aiu", mongo_server, { safe: true});
 
 server.on('request', function(req, res) {
-	console.log(req.url + " count = " + count);
-	count++;
+	console.log(req.url);
 
 	if(req.method == "POST") {
-		var postData;
 		var pathname = url.parse(req.url).pathname;
 		var query = url.parse(req.url).query;
 
 		req.setEncoding("utf8");
-		var data="";
+		var buffer="";
 
 		// sample database
-		var collection = mongo_database.collection("sample_coll");
-		var result = collection.find({}, {"key1": "value1"});
-		result.toArray(function (err, values) {
-			console.dir(values);
+		// 0.000277778
+		var collection = mongo_database.collection("aiu");
+		req.on('data', function(data) {
+			buffer += data.toString();
+			var ParamsWithValue = querystring.parse(buffer);
+			console.log(ParamsWithValue.x);
+			console.log(ParamsWithValue.y);
+			var x = Number(ParamsWithValue.x);
+			var y = Number(ParamsWithValue.y);
+			console.log(x + " y = " + y);
+			var result = collection.find( { "lat": {$gt: x-0.000277778, $lt: x+0.000277778}, "lon":{$gt: y-0.000277778, $lt: y+0.000277778}});
+			result.toArray(function (err, values) {
+				postData = values;
+				// console.log(postData);
+			});
 		});
-
-		req.on("readable", function () {
-			data += req.read();
-			console.log(data);
-		});
-
+		
 		req.addListener("end", function() {
 			res.writeHead(200, {"Content-Type": "application/json"});
-
-			var people = [
-			  { name: 'Dave', location: 'Atlanta' },
-			  { name: 'Santa Claus', location: 'North Pole' },
-			  { name: 'Man in the Moon', location: 'The Moon' }
-			];
-
-			var peopleJSON = JSON.stringify(people);
-			res.end(peopleJSON);
+			console.log(postData);
+			res.end(JSON.stringify(postData));
 		});
 	}
 
@@ -80,7 +78,6 @@ server.on('request', function(req, res) {
 		var file_content = fs.readFileSync(file_path);
 		res.end(file_content);		
 	}
-
 });
 
 database.open(function (err, db) {
