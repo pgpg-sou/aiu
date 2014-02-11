@@ -62,7 +62,7 @@ database.open(function (err, db) {
 	console.log("sampledbにアクセスしました");
 });
 
-server.listen(1337, 'localhost');
+server.listen(1337);
 
 console.log("Server running at http://localhost:1337/");
 console.log("サーバを終了する際は[ctrl + c]を押してください");
