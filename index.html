@@ -25,59 +25,62 @@
 			</section>
 		</div>
 		<script type="text/javascript">
+			var receiveData = [];
 			$(function(){
 			 setInterval("submit()",3000);
 			});
 			function submit() {
 				if(navigator.geolocation) {
-			  navigator.geolocation.getCurrentPosition(function(position) {
-			      var pos = {x: position.coords.latitude, y: position.coords.longitude};
-			
-			$.ajax({
-				type:"post",
-				data: pos,
-				dataType: "json",           // レスポンスをJSONとしてパースする
-				success: function(data) {   // 200 OK時
-					console.log(data[0]);
-					var date = new Date( jQuery . now() ) . toLocaleString();
+			  		navigator.geolocation.getCurrentPosition(function(position) {
+			      	var pos = {x: position.coords.latitude, y: position.coords.longitude};
 					
-			$(".timeline").prepend($("<li>")
-			 		.addClass('event')
-			   	.append($("<input/>").attr({
-			   		type: "radio",	
-			   		name:"tl-group"
-			   		}))
-			   	.append("<label></label>")
-			   	.append($("<div>")
-			   		.addClass('thumb')
-			   		.addClass('user-6')
-			   		.append("<span>"+data[0].name+"</spqn>")
-			   		)
-			   	.append($("<div>")
-			   		.addClass('content-perspective')
-			   		.append($("<div>")
-			   			.addClass('content')
-			   			.append($("<div>")
-			   				.addClass('content-inner')
-			   				.append("<h3>"+ data[0].message+"</h3>")
-			   				.append("<p><span>"+ Date() +" -</span>"+ data[0].address + "</p>")
-			   				)
-			   			)
-			   		)
-			   	);
-			   	
-				},
-				error: function() {
-				},
-				complete: function() {
-				}
-			    });
-			
-			  });
-				}
+					$.ajax({
+						type:"post",
+						data: pos,
+						dataType: "json",
+						success: function(data) {
+							console.log(data[0]);
+							if(receiveData.indexOf(data[0].id) == -1) {
+								receiveData.push(data[0].id);
+								console.log(receiveData);
+								var date = new Date( jQuery . now() ) . toLocaleString();
+								
+								addComponent(data);
+							}
+						},
+						error: function() {
+						},
+						complete: function() {
+						}
+				    });
+				});}
 			}
-			
-			
+			function addComponent(data) {
+				$(".timeline").prepend($("<li>")
+				 	.addClass('event')
+				   	.append($("<input/>").attr({
+				   		type: "radio",	
+				   		name:"tl-group"
+				   	}))
+				   	.append("<label></label>")
+				   	.append($("<div>")
+				   		.addClass('thumb')
+				   		.addClass('user-1')
+				   		.append("<span>"+data[0].name+"</spqn>")
+				   	)
+				   	.append($("<div>")
+				   		.addClass('content-perspective')
+				   		.append($("<div>")
+				   			.addClass('content')
+				   			.append($("<div>")
+				   				.addClass('content-inner')
+				   				.append("<h3>"+ data[0].message+"</h3>")
+				   				.append("<p><span>"+ Date() +" -</span>"+ data[0].address + "</p>")
+				   			)
+				   		)
+				   	)
+				);
+			}
 		</script>
 	</body>
 </html>
