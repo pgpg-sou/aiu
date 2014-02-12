@@ -84,7 +84,6 @@
 	-o-text-overflow: ellipsis;
 	-ms-text-overflow: ellipsis;
 	text-overflow: ellipsis;
-
 	
 }
 
@@ -346,6 +345,11 @@
 		-o-transform: scale(0.8);
 		-ms-transform: scale(0.8);
 		transform: scale(0.8);
+	}
+
+	.thumb span{
+		bottom: 30px;
+		left:  80px;
 	}
 
 	.event input[type="radio"] {

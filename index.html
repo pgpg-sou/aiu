@@ -39,27 +39,33 @@
 				"address" : "東京都八王子市にて"
 				},
 				{
+				"name" : "上椚田橋",
+				"image" : "bridge.jpg",
+				"message" : "ここの標高は１７９Mですよ",
+				"address" : "東京都八王子市にて"
+				},
+				{
 				"name" : "京王線",
-				"image" : "tengu.jpg",
-				"message" : "高尾ポテトたべない？？おいしいよ〜",
+				"image" : "train.jpg",
+				"message" : "うああ，５分遅延してるよ！！！！！",
 				"address" : "東京都八王子市にて"
 				},
 				{
-				"name" : "高尾山の店",
-				"image" : "tengu.jpg",
-				"message" : "高尾ポテトたべない？？おいしいよ〜",
+				"name" : "消火栓",
+				"image" : "firehydrant.jpg",
+				"message" : "消火栓NO.2934！！！直径は２０cmなり！",
 				"address" : "東京都八王子市にて"
 				},
 				{
-				"name" : "高尾山の店",
-				"image" : "tengu.jpg",
-				"message" : "高尾ポテトたべない？？おいしいよ〜",
+				"name" : "建設中",
+				"image" : "built.png",
+				"message" : "ただいま，市民体育館を建設してます。平成26年10月1日完成予定",
 				"address" : "東京都八王子市にて"
 				},
 				{
-				"name" : "高尾山の店",
-				"image" : "tengu.jpg",
-				"message" : "高尾ポテトたべない？？おいしいよ〜",
+				"name" : "Wifiスポット",
+				"image" : "wifispot.jpg",
+				"message" : "Wifi~飛んでるよ〜！ビンビン！！ビクッ！",
 				"address" : "東京都八王子市にて"
 				},
 			];
@@ -107,9 +113,9 @@
 				    });
 				});}
 			}
-			function addComponent(data) {
+			function addComponent(data,i) {
 
-				var imagePath = "url(./images/"+data[0].image+")";// + data[0].image + ")";
+				var imagePath = "url(./images/"+data[i].image+")";// + data[0].image + ")";
 
 				$(".timeline").prepend($("<li>")
 				 	.addClass('event')
@@ -124,7 +130,7 @@
 				   	.append($("<div>")
 				   		.css("background-image",imagePath)
 				   		.addClass('thumb')
-				   		.append("<span>"+data[0].name+"</spqn>")
+				   		.append("<span>"+data[i].name+"</spqn>")
 				   	)
 				   	.append($("<div>")
 				   		.addClass('content-perspective')
@@ -132,8 +138,8 @@
 				   			.addClass('content')
 				   			.append($("<div>")
 				   				.addClass('content-inner')
-				   				.append("<h3>"+ data[0].message+"</h3>")
-				   				.append("<p><span>"+ Date() +" -</span>"+ data[0].address + "</p>")
+				   				.append("<h3>"+ data[i].message+"</h3>")
+				   				.append("<p><span>"+ Date() +" -</span>"+ data[i].address + "</p>")
 				   			)
 				   		)
 				   	)
@@ -143,8 +149,20 @@
 
 			}
 			hiddenButton.click(function(){
-				//setInterval("addComponent(demoData)",10000);
-				addComponent(demoData);
+				
+				var i = 0;				
+
+				disp();
+
+				function disp(){
+					if(i == demoData.length ) return;
+					addComponent(demoData,i)
+					i++;
+					setTimeout(function(){
+						disp()
+					},10000);
+				}
+				
 			});
 		</script>
 	</body>
