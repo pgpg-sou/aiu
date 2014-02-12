@@ -83,7 +83,7 @@
 
 			var receiveData = [];
 			$(function(){
-			 //setInterval("submit()",3000);
+			 setInterval("submit()",3000);
 			});
 			function submit() {
 				if(navigator.geolocation) {
@@ -101,7 +101,7 @@
 								console.log(receiveData);
 								var date = new Date( jQuery . now() ) . toLocaleString();
 								
-								addComponent(data);
+								addComponent(data, 0);
 								var audio = new Audio("http://www.brainstorm-inc.jp/SFSND_OGG/DECISION/Decision0086.ogg");
 								audio.play();
 							}
