@@ -27,6 +27,8 @@
 	top: 0;
 	left: 165px;
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJUlEQVQIW2NkQAP/gYARWQwkAOLDBeECjEAAkkEWAKtEFwAJAgAZEBP+oM1IkwAAAABJRU5ErkJggg==);
+	background-color: #fff;
+	
 }
 
 .event {
@@ -42,7 +44,7 @@
 	width: 100px;
 	height: 100px;
 	box-shadow: 
-		0 0 0 8px rgba(65,131,142,1), 
+		0 0 0 8px rgba(0,188,209,1), 
 		0 1px 1px rgba(255,255,255,0.5);
 	background-repeat: no-repeat;
 	border-radius: 50%;
@@ -66,7 +68,7 @@
 }
 
 .thumb span {
-	color: #41838e; 
+	color: #00BCD1;
 	width: 150px;
 	text-align: center;
 	font-weight: 700;
@@ -86,25 +88,6 @@
 	
 }
 
-.user-1 {
-	background-image: url(../images/firehydrant.jpg);
-}
-
-.user-2 {
-	background-image: url(../images/wifispot.jpg);
-}
-
-.user-3 {
-	background-image: url(../images/spot.jpg);
-}
-
-.user-4 {
-	background-image: url(../images/evacuationarea.jpg);
-}
-
-.user-5 {
-	background-image: url(../images/aed.jpg);
-}
 
 
 /* Transparent Checkbox/radio hack: leave the checkbox on top, hide it with opacity 0 */
@@ -130,7 +113,7 @@
 	content: '\e702';
 	background: #fff;
 	border-radius: 50%;
-	color: #41838E;
+	color: #00BCD1;
 	font-size: 26px;
 	height: 100%;
 	width: 100%;
@@ -188,7 +171,7 @@
 	padding: 20px;
 	color: #333;
 	border: none;
-	border-left: 5px solid #41838e;
+	border-left: 5px solid #00BCD1;
 	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 	background: #fff;
 }
@@ -196,7 +179,8 @@
 .content-inner h3 {
 	font-size: 26px;
 	padding: 5px 0 5px 0;
-	color: #41838e;
+	color: #00BCD1;
+	letter-spacing: 3px;
 }
 
 
@@ -220,7 +204,7 @@
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	color: #41838e;
+	color: #00BCD1;
 	left: -22px;
 	top: 19px;
 	z-index: -1;
@@ -408,7 +392,7 @@
 
 	.content-inner {
 		border-left: none;
-		border-top: 5px solid #41838e;
+		border-top: 5px solid #00BCD1;
 	}
 
 	.event input[type="radio"]:checked ~ .content-perspective .content-inner {
