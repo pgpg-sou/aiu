@@ -1,0 +1,26 @@
+【MongoDB用データ作成方法】
+CSV等の処理に特化した言語「awk」を使用する．
+
+例えば「さばかん」の情報の場合：
+1.ダウンロードしたCSVファイルの最上部にあるコメント等をあらかじめ削除しておく．
+
+2.次のようなAWKスクリプト（例えば「02_sabakan.awk」）を作成
+
+	BEGIN {
+		FS = ",";
+		OFS = "\t"
+		print "id","lat","lon","name","address","message";
+	}
+	{print $1, $12, $13, "さばかん", $8, "ここは観光スポット「" $6 "」です．" $7 }
+
+3.コンソールから
+
+	$ awk -f 02_sabakan.awk 02_sabakan.csv > 02_out.tsv
+
+  とすると，タブ区切りのファイル「02_out.tsv」が生成される．
+
+4. コマンド
+	$ mongoimport --db mydb --collection data1 --type tsv --file 02_out.tsv --headerline
+  でmongoDBにインポート．
+
+以上．
