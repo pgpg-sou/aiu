@@ -138,7 +138,7 @@
 								console.log(receiveData);
 								var date = new Date( jQuery . now() ) . toLocaleString();
 								
-								addComponent(data);
+								addComponent(data, 0);
 								var audio = new Audio("http://www.brainstorm-inc.jp/SFSND_OGG/DECISION/Decision0086.ogg");
 								audio.play();
 							}
@@ -153,7 +153,8 @@
 			function addComponent(data,i) {
 
 				var imagePath = "url(./images/"+data[i].image+")";// + data[0].image + ")";
-
+				var d = new Date();
+				var time = d.getHours() + "時" + d.getMinutes() + "分" + d.getSeconds() + "秒";
 				$(".timeline").prepend($("<li>")
 				 	.addClass('event')
 				   	.append($("<input/>")
@@ -176,7 +177,7 @@
 				   			.append($("<div>")
 				   				.addClass('content-inner')
 				   				.append("<h3>"+ data[i].message+"</h3>")
-				   				.append("<p><span>"+ Date() +" -</span>"+ data[i].address + "</p>")
+				   				.append("<p><span>"+ time +" -</span>"+ data[i].address + "</p>")
 				   			)
 				   		)
 				   	)
