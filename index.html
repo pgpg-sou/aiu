@@ -41,7 +41,7 @@
 				{
 				"name" : "上椚田橋",
 				"image" : "bridge.jpg",
-				"message" : "ここの標高は１７９Mですよ",
+				"message" : "ここの標高は１７９Mですよ(｀・ω・´)",
 				"address" : "東京都八王子市にて"
 				},
 				{
@@ -65,12 +65,47 @@
 				{
 				"name" : "Wifiスポット",
 				"image" : "wifispot.jpg",
-				"message" : "Wifi~飛んでるよ〜！ビンビン！！ビクッ！",
+				"message" : "Wifi~飛んでるよ〜！ビンビン！！",
 				"address" : "東京都八王子市にて"
+				},
+				{
+				"name" : "避難所",
+				"image" : "evacuationarea.jpg",
+				"message" : "ここは，八王子市の避難所に登録されてるよ。",
+				"address" : "東京都八王子市にて"
+				},
+				{
+				"name" : "公衆トイレ",
+				"image" : "toilet.jpg",
+				"message" : "この公園にはトイレがあります。",
+				"address" : "東京都八王子市にて"
+				},
+
+			];
+
+			var introductionData =[
+				{
+				"name" : "ガイド",
+				"image" : "darthvader.jpg",
+				"message" : "ようこそLeadTownへ",
+				"address" : "Team.AIUより"
+				},
+				{
+				"name" : "ガイド",
+				"image" : "darthvader.jpg",
+				"message" : "LeadTownでは，町があなたに話しかけてくれます。便利なこと，すてきなこと，おかしなこと町たちが何か言っています。ぜひ，いろんな声に耳を傾けてみてください。",
+				"address" : "Team.AIUより"
+				},
+				{
+				"name" : "ガイド",
+				"image" : "darthvader.jpg",
+				"message" : "紹介動画LINKhttps://www.youtube.com/",
+				"address" : "Team.AIUより"
 				},
 			];
 
 			var hiddenButton = $('#demohidden');
+			var i =0;
 			// 高尾山口でお店の情報， 
 			// 高尾山のお店
 			// 京王線で遅延情報 どっか狭間付近
@@ -83,7 +118,9 @@
 
 			var receiveData = [];
 			$(function(){
-			 //setInterval("submit()",3000);
+				//スタートガイドを表示する
+				addComponent(introductionData,0);
+				//setInterval("submit()",3000);
 			});
 			function submit() {
 				if(navigator.geolocation) {
@@ -144,24 +181,26 @@
 				   		)
 				   	)
 				);
-				/*データから画像ファイル名を選択*/
+				
 				
 
 			}
 			hiddenButton.click(function(){
 				
-				var i = 0;				
-
-				disp();
-
-				function disp(){
-					if(i == demoData.length ) return;
-					addComponent(demoData,i)
+				if(i == demoData.length){
+					i =0;
+					return;
+				}	
+				
+				setTimeout(function(){
+					addComponent(demoData,i);
+					var audio = new Audio("http://www.brainstorm-inc.jp/SFSND_OGG/DECISION/Decision0086.ogg");
+					audio.play();
 					i++;
-					setTimeout(function(){
-						disp()
-					},10000);
-				}
+				},3000);
+				
+				
+				
 				
 			});
 		</script>
