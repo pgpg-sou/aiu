@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>AIU</title>
+		<title>Town Voice</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -120,7 +120,7 @@
 			$(function(){
 				//スタートガイドを表示する
 				addComponent(introductionData,0);
-				//setInterval("submit()",3000);
+				setInterval("submit()",3000);
 			});
 			function submit() {
 				if(navigator.geolocation) {
@@ -182,8 +182,6 @@
 				   		)
 				   	)
 				);
-				
-				
 
 			}
 			hiddenButton.click(function(){
@@ -199,10 +197,6 @@
 					audio.play();
 					i++;
 				},3000);
-				
-				
-				
-				
 			});
 		</script>
 	</body>
