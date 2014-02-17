@@ -19,7 +19,11 @@
 <!-- 
 				<h1>Responsive CSS Timeline with 3D Effect <span>(Best viewed in WebKit browsers)</span></h1>
  -->				
-				<h2> Town Voice <span id = "demohidden">あなたの知らない街の声</span></h2>
+				<h2> Town Voice <span>あなたの知らない街の声</span></h2>
+
+				<nav class="demos">
+					<a id = "demo1">Demo 1</a>
+				</nav>
 			</header>
 
 
@@ -86,20 +90,20 @@
 			var introductionData =[
 				{
 				"name" : "ガイド",
-				"image" : "darthvader.jpg",
+				"image" : "tengu.jpg",
 				"message" : "ようこそTown Voiceへ",
 				"address" : "Team.AIUより"
 				},
 				{
 				"name" : "ガイド",
-				"image" : "darthvader.jpg",
+				"image" : "tengu.jpg",
 				"message" : "Town Voiceでは，町があなたに話しかけてくれます。便利なこと，すてきなこと，おかしなこと町たちが何か言っています。ぜひ，いろんな声に耳を傾けてみてください。",
 				"address" : "Team.AIUより"
 				},
 				{
 				"name" : "ガイド",
-				"image" : "darthvader.jpg",
-				"message" : "紹介動画LINKhttps://www.youtube.com/",
+				"image" : "tengu.jpg",
+				"message" : "紹介動画はこちらです。http://www.youtube.com/watch?v=tKkVLVm2Wi4",
 				"address" : "Team.AIUより"
 				},
 			];
@@ -120,7 +124,10 @@
 			$(function(){
 				//スタートガイドを表示する
 				addComponent(introductionData,0);
-				setInterval("submit()",3000);
+				addComponent(introductionData,1);
+				addComponent(introductionData,2);
+
+				setInterval("submit()",10000);
 			});
 			function submit() {
 				if(navigator.geolocation) {
@@ -184,14 +191,14 @@
 				);
 
 			}
-			hiddenButton.click(function(){
+			$("#demo1").click(function(){
 				
 				if(i == demoData.length){
 					i =0;
 					return;
 				}	
 				
-				setTimeout(function(){
+				setInterval(function(){
 					addComponent(demoData,i);
 					var audio = new Audio("http://www.brainstorm-inc.jp/SFSND_OGG/DECISION/Decision0086.ogg");
 					audio.play();
